@@ -1,0 +1,6 @@
+.element__caption {
+  display: flex;
+  justify-content: space-between;
+  max-width: 282px;
+  background-color: white;
+}
