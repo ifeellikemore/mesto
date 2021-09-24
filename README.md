@@ -1,17 +1,14 @@
-# Проект: Место
+# Project: Mesto
 
-### Обзор
+Hello there!
+My name is Olya. I was born and raised in Siberia, but I live in California now.
 
-* Figma
-* Картинки
+I've just started my study as a web developer and this is my third project I created from scratch by myself.
+This project is similar to Instagram. You can edit your profile, upload your favorite pictures, and give them likes.
 
-**Figma**
+I made this website responsive using HTML, CSS, and I also added a bit of Javascript (I've just started learning it, so you won't see much of JS here yet). I am planning to add some more of JS as I continue with my study.
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+Hope you like it.
+Enjoy :)
 
-**Картинки**
-
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
-
-Удачи!
+[Russian Travel](https://ifeellikemore.github.io/mesto/index.html)
