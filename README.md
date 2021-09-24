@@ -11,4 +11,4 @@ I made this website responsive using HTML, CSS, and I also added a bit of Javasc
 Hope you like it.
 Enjoy :)
 
-[Russian Travel](https://ifeellikemore.github.io/mesto/index.html)
+[Mesto Project](https://ifeellikemore.github.io/mesto/index.html)
