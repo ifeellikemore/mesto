@@ -9,82 +9,65 @@
   <title>Место</title>
   <link rel="stylesheet" href="pages/index.css">
 </head>
-<body>
-  <div class="page">
+<body class="page">
     <header class="header">
       <img src="images/header-logo.svg" class="header__logo" alt="Место">
     </header>
 
     <main class="content">
       <section class="profile content__profile" aria-label="Информация о профиле">
-        <img src="images/profile-avatar.jpg" class="avatar" alt="Фото профиля">
+        <img src="images/profile-avatar.jpg" class="profile__avatar" alt="Фото профиля">
         <div class="profile-info profile__profile-info">
-          <p class="profile-info__name">Жак-Ив Кусто</p>
-          <button type="button" class="profile-info__edit-button">
-            <img src="images/profile-info-edit-button.svg" class="profile-info__edit-button-pic" alt="Кнопка редактирования профиля">
-          </button>
+          <h1 class="profile-info__name">Жак-Ив Кусто</h1>
+          <button type="button" class="profile-info__edit-button" aria-label="Кнопка редактирования профиля"></button>
           <p class="profile-info__job">Исследователь океана</p>
         </div>
-        <button type="button" class="add-button profile__add-button">
-          <img src="images/profile-info-add-button.svg" class="add-button__add-button-pic" alt="Кнопка добавления фото">
-        </button>
+        <button type="button" class="profile-info__add-button" aria-label="Кнопка добавления фото"></button>
       </section>
 
       <section class="elements" aria-label="Фотографии пользователя">
-        <div class="element">
-          <div class="element__pic-container">
+        <article class="element">
             <img src="images/elements-element-big-sur.jpg" class="element__pic" alt="Биг Сюр, Калифорния">
-          </div>
           <div class="element__caption">
-            <p class="element__title">Биг Сюр</p>
-            <img src="images/elements-element-like-icon.svg" class="element__like-icon" alt="Поставить лайк на фото">
+            <h3 class="element__title">Биг Сюр</h3>
+            <button type="button" class="element__like-btn" aria-label="Поставить лайк на фото"></button>
           </div>
-        </div>
-        <div class="element">
-          <div class="element__pic-container">
+        </article>
+        <article class="element">
             <img src="images/elements-element-california-hwy.jpg" class="element__pic" alt="Шоссе, Калифорния">
-          </div>
           <div class="element__caption">
-            <p class="element__title">Хайвей Калифорния</p>
-            <img src="images/elements-element-like-icon.svg" class="element__like-icon" alt="Поставить лайк на фото">
+            <h3 class="element__title">Хайвей Калифорния</h3>
+            <button type="button" class="element__like-btn" aria-label="Поставить лайк на фото"></button>
           </div>
-        </div>
-        <div class="element">
-          <div class="element__pic-container">
+        </article>
+        <article class="element">
             <img src="images/elements-element-golden-gates-bridge.jpg" class="element__pic" alt="Мост Золотые Ворота, Калифорния">
-          </div>
           <div class="element__caption">
-            <p class="element__title">Мост "Золотые Ворота"</p>
-            <img src="images/elements-element-like-icon.svg" class="element__like-icon" alt="Поставить лайк на фото">
+            <h3 class="element__title">Мост "Золотые Ворота"</h3>
+            <button type="button" class="element__like-btn" aria-label="Поставить лайк на фото"></button>
           </div>
-        </div>
-        <div class="element">
-          <div class="element__pic-container">
+        </article>
+        <article class="element">
             <img src="images/elements-element-palm.jpg" class="element__pic" alt="Пальмы, Калифорния">
-          </div>
           <div class="element__caption">
-            <p class="element__title">Пальмы</p>
-            <img src="images/elements-element-like-icon.svg" class="element__like-icon" alt="Поставить лайк на фото">
+            <h3 class="element__title">Пальмы</h3>
+            <button type="button" class="element__like-btn" aria-label="Поставить лайк на фото"></button>
           </div>
-        </div>
-        <div class="element">
-          <div class="element__pic-container">
+        </article>
+        <article class="element">
             <img src="images/elements-element-wild-animal.jpg" class="element__pic" alt="Дикие животные Калифорнии">
-          </div>
           <div class="element__caption">
-            <p class="element__title">Дикие животные Калифорнии</p>
-            <img src="images/elements-element-like-icon.svg" class="element__like-icon" alt="Поставить лайк на фото">
+            <h3 class="element__title">Дикие животные Калифорнии</h3>
+            <button type="button" class="element__like-btn" aria-label="Поставить лайк на фото"></button>
           </div>
-        </div>
-        <div class="element">
-          <div class="element__pic-container">
+        </article>
+        <article class="element">
             <img src="images/elements-element-yosemite.jpg" class="element__pic" alt="Национальный парк Йосемите, Калифорния">
-          </div>
           <div class="element__caption">
-            <p class="element__title">Йосемите</p>
-            <img src="images/elements-element-like-icon.svg" class="element__like-icon" alt="Поставить лайк на фото">
+            <h3 class="element__title">Йосемите</h3>
+            <button type="button" class="element__like-btn" aria-label="Поставить лайк на фото"></button>
           </div>
-        </div>
+        </article>
       </section>
     </main>
 
@@ -95,15 +78,14 @@
     <div class="popup">
       <div class="popup__container">
         <button type="button" class="popup__close-btn"></button>
-        <h3 class="popup__title">Редактировать профиль</h3>
-        <form class="popup-form">
-          <input type="text" name="username" id="username" class="popup-form__input" value="Жак-Ив Кусто">
-          <input type="text" name="job" id="job" class="popup-form__input" value="Исследователь океана">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="popup-form" name="userInfo">
+          <input type="text" required  placeholder="Имя" name="username" id="username" class="popup-form__input">
+          <input type="text" placeholder="О себе" name="job" id="job" class="popup-form__input">
           <button type="submit" class="popup-form__submit-btn">Сохранить</button>
         </form>
       </div>
     </div>
-  </div>
 
 <script src="scripts/index.js"></script>
 </body>

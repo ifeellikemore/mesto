@@ -3,6 +3,8 @@
   width: 100%;
   min-width: 358px;
   min-height: 50px;
+  border: none;
+  border-radius: 2px;
   background-color: #000;
   font-style: normal;
   font-weight: normal;

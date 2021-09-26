@@ -2,13 +2,16 @@
   width: 24px;
   height: 24px;
   border: 1px solid #FFFFFF;
-  padding: 7px;
   margin-top: 15px;
   cursor: pointer;
   transition: opacity 0.3s;
+  background: url(../../../images/profile-info-edit-button.svg);
+  background-position: center;
+  background-repeat: no-repeat;
   background-color: transparent;
   display: flex;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 .profile-info__edit-button:hover {
@@ -20,7 +23,6 @@
     margin-top: 8px;
     width: 18px;
     height: 18px;
-    padding: 5.25px;
     margin-right: 19px;
     margin-left: 10px;
   }

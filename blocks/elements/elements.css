@@ -11,8 +11,6 @@
   .elements {
     width: calc(100% - 48px);
     max-width: 720px;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px 17px;
   }
 }
 
