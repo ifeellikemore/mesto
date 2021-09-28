@@ -6,6 +6,7 @@
   background: url(../../../images/profile-info-add-button.svg);
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 22px 22px;
   transition: opacity 0.3s;
   cursor: pointer;
   margin-top: 35px;
@@ -24,5 +25,6 @@
     margin: 0;
     width: 100%;
     max-width: 282px;
+    background-size: 16px 16px;
   }
 }
