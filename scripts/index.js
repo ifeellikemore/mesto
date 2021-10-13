@@ -120,10 +120,7 @@ function addPictureFormSumbitHandler (event) {
 
   // initialCards.unshift(picture); - add the picture to the beginning of the array, commented for future use.
   addPicture(picture);
-
-  pictureTitle.value = '';
-  pictureLink.value = '';
-
+  addPictureForm.reset();
   closePopupWindow();
 }
 
