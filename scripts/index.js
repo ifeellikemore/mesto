@@ -1,9 +1,9 @@
-const editInfoPopupWindow = document.querySelector('#editUserInfo');
-const addPicturePopupWindow = document.querySelector('#addPicture');
-const imagePopup = document.querySelector('.image-popup');
+const editInfoPopupWindow = document.querySelector('.popup_type_edit-user-info');
+const addPicturePopupWindow = document.querySelector('.popup_type_add-new-card');
+const imagePopup = document.querySelector('.popup_type_image');
 const editInfoPopupWindowCloseBtn = editInfoPopupWindow.querySelector('.popup__close-btn');
 const addPicturePopupWindowCloseBtn = addPicturePopupWindow.querySelector('.popup__close-btn');
-const picturePreviewPopupCloseBtn = imagePopup.querySelector('.image-popup__close-btn');
+const picturePreviewPopupCloseBtn = imagePopup.querySelector('.popup__close-btn');
 const editBtn = document.querySelector('.profile-info__edit-button');
 const addPictureBtn = document.querySelector('.profile__add-button');
 const editInfoForm = editInfoPopupWindow.querySelector('.popup-form');
@@ -14,8 +14,8 @@ const pictureTitle = addPictureForm.querySelector('#pictureTitle');
 const pictureLink = addPictureForm.querySelector('#pictureLink');
 const username = document.querySelector('.profile-info__name');
 const job = document.querySelector('.profile-info__job');
-let fullsizePicture = imagePopup.querySelector('.image-popup__picture');
-let fullsizePictureCaption = imagePopup.querySelector('.image-popup__caption');
+let fullsizePicture = imagePopup.querySelector('.popup__picture');
+let fullsizePictureCaption = imagePopup.querySelector('.popup__caption');
 const initialCards = [
   {
     name: 'Йосемите',
@@ -81,10 +81,17 @@ function openEditInfoPopup() {
   editInfoPopupWindow.classList.add('popup_opened');
 }
 
+function openPicturePreviewPopup(evt) {
+  fullsizePicture.src = evt.target.src;
+  fullsizePicture.alt = evt.target.alt;
+  fullsizePictureCaption.textContent = evt.target.parentNode.querySelector('.element__title').textContent;
+  imagePopup.classList.add('popup_opened');
+}
+
 function closePopupWindow() {
   editInfoPopupWindow.classList.remove('popup_opened');
   addPicturePopupWindow.classList.remove('popup_opened');
-  imagePopup.classList.remove('image-popup_opened');
+  imagePopup.classList.remove('popup_opened');
 }
 
 // закомментировано на будущее :) (close pop-up window by clicking on the overlay layer)
@@ -126,13 +133,6 @@ function clickLikeButton (evt) {
 
 function removePicture(evt) {
   evt.target.closest('.element').remove();
-}
-
-function openPicturePreviewPopup(evt) {
-  fullsizePicture.src = evt.target.src;
-  fullsizePicture.alt = evt.target.alt;
-  fullsizePictureCaption.textContent = evt.target.parentNode.querySelector('.element__title').textContent;
-  imagePopup.classList.add('image-popup_opened');
 }
 
 addPictureBtn.addEventListener('click', openAddPicturePopup);
