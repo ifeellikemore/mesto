@@ -14,8 +14,8 @@ const pictureTitle = addPictureForm.querySelector('#pictureTitle');
 const pictureLink = addPictureForm.querySelector('#pictureLink');
 const username = document.querySelector('.profile-info__name');
 const job = document.querySelector('.profile-info__job');
-let fullsizePicture = imagePopup.querySelector('.popup__picture');
-let fullsizePictureCaption = imagePopup.querySelector('.popup__caption');
+const fullsizePicture = imagePopup.querySelector('.popup__picture');
+const fullsizePictureCaption = imagePopup.querySelector('.popup__caption');
 const initialCards = [
   {
     name: 'Йосемите',
@@ -51,47 +51,43 @@ const initialCards = [
 const initialCardsTemplate = document.querySelector('#elements-template').content;
 const elementsSection = document.querySelector('.elements');
 
-const addPicture = (picture) => {
+const createCard = (card) => {
   let sectionElement = initialCardsTemplate.cloneNode(true);
   let elementPicture = sectionElement.querySelector('.element__pic');
   let elementTitle = sectionElement.querySelector('.element__title');
   let pictureLikeButton = sectionElement.querySelector('.element__like-btn');
   let pictureDeleteButton = sectionElement.querySelector('.element__delete-btn');
 
-  elementPicture.src = picture.link;
-  elementPicture.alt = picture.alt;
-  elementTitle.textContent = picture.name;
+  elementPicture.src = card.link;
+  elementPicture.alt = card.alt;
+  elementTitle.textContent = card.name;
 
   pictureLikeButton.addEventListener('click', clickLikeButton);
   pictureDeleteButton.addEventListener('click', removePicture);
-  elementPicture.addEventListener('click', openPicturePreviewPopup);
+  elementPicture.addEventListener('click', (evt) => {
+    fullsizePicture.src = evt.target.src;
+    fullsizePicture.alt = evt.target.alt;
+    fullsizePictureCaption.textContent = evt.target.parentNode.querySelector('.element__title').textContent;
+    openPopup(imagePopup);
+  });
 
+  return sectionElement;
+}
+
+const addCard = (card) => {
+  const sectionElement = createCard(card);
   elementsSection.prepend(sectionElement);
-};
-
-initialCards.forEach(addPicture);
-
-function openAddPicturePopup() {
-  addPicturePopupWindow.classList.add('popup_opened');
 }
 
-function openEditInfoPopup() {
-  inputName.value = username.textContent;
-  inputJob.value = job.textContent;
-  editInfoPopupWindow.classList.add('popup_opened');
+initialCards.forEach(createCard);
+initialCards.forEach(addCard);
+
+function openPopup (popup) {
+  popup.classList.add('popup_opened');
 }
 
-function openPicturePreviewPopup(evt) {
-  fullsizePicture.src = evt.target.src;
-  fullsizePicture.alt = evt.target.alt;
-  fullsizePictureCaption.textContent = evt.target.parentNode.querySelector('.element__title').textContent;
-  imagePopup.classList.add('popup_opened');
-}
-
-function closePopupWindow() {
-  editInfoPopupWindow.classList.remove('popup_opened');
-  addPicturePopupWindow.classList.remove('popup_opened');
-  imagePopup.classList.remove('popup_opened');
+function closePopup (popup) {
+  popup.classList.remove('popup_opened');
 }
 
 // закомментировано на будущее :) (close pop-up window by clicking on the overlay layer)
@@ -106,22 +102,23 @@ function editInfoFormSubmitHandler (evt) {
   evt.preventDefault();
   username.textContent = inputName.value;
   job.textContent = inputJob.value;
-  closePopupWindow();
+  closePopup(editInfoPopupWindow);
 }
 
-function addPictureFormSumbitHandler (event) {
+function addCardFormSumbitHandler (event) {
   event.preventDefault();
 
-  const picture = {
+  const card = {
     name: pictureTitle.value,
     link: pictureLink.value,
     alt: pictureTitle.value
   }
 
   // initialCards.unshift(picture); - add the picture to the beginning of the array, commented for future use.
-  addPicture(picture);
+  createCard(card);
+  addCard(card);
   addPictureForm.reset();
-  closePopupWindow();
+  closePopup(addPicturePopupWindow);
 }
 
 function clickLikeButton (evt) {
@@ -132,10 +129,22 @@ function removePicture(evt) {
   evt.target.closest('.element').remove();
 }
 
-addPictureBtn.addEventListener('click', openAddPicturePopup);
-editBtn.addEventListener('click', openEditInfoPopup);
-editInfoPopupWindowCloseBtn.addEventListener('click', closePopupWindow);
-addPicturePopupWindowCloseBtn.addEventListener('click', closePopupWindow);
-picturePreviewPopupCloseBtn.addEventListener('click', closePopupWindow);
+addPictureBtn.addEventListener('click', () => {
+  openPopup(addPicturePopupWindow);
+});
+editBtn.addEventListener('click', () => {
+  inputName.value = username.textContent;
+  inputJob.value = job.textContent;
+  openPopup(editInfoPopupWindow);
+});
+editInfoPopupWindowCloseBtn.addEventListener('click', () => {
+  closePopup(editInfoPopupWindow);
+});
+addPicturePopupWindowCloseBtn.addEventListener('click', () => {
+  closePopup(addPicturePopupWindow);
+});
+picturePreviewPopupCloseBtn.addEventListener('click', () => {
+  closePopup(imagePopup);
+});
 editInfoForm.addEventListener('submit', editInfoFormSubmitHandler);
-addPictureForm.addEventListener('submit', addPictureFormSumbitHandler);
+addPictureForm.addEventListener('submit', addCardFormSumbitHandler);
