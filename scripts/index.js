@@ -52,11 +52,11 @@ const initialCardsTemplate = document.querySelector('#elements-template').conten
 const elementsSection = document.querySelector('.elements');
 
 const createCard = (card) => {
-  let sectionElement = initialCardsTemplate.cloneNode(true);
-  let elementPicture = sectionElement.querySelector('.element__pic');
-  let elementTitle = sectionElement.querySelector('.element__title');
-  let pictureLikeButton = sectionElement.querySelector('.element__like-btn');
-  let pictureDeleteButton = sectionElement.querySelector('.element__delete-btn');
+  const sectionElement = initialCardsTemplate.cloneNode(true);
+  const elementPicture = sectionElement.querySelector('.element__pic');
+  const elementTitle = sectionElement.querySelector('.element__title');
+  const pictureLikeButton = sectionElement.querySelector('.element__like-btn');
+  const pictureDeleteButton = sectionElement.querySelector('.element__delete-btn');
 
   elementPicture.src = card.link;
   elementPicture.alt = card.alt;
