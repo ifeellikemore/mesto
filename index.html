@@ -75,31 +75,35 @@
       <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
 
-    <div class="popup popup_type_edit-user-info">
+    <div class="popup popup_type_edit-user-info" id="edit-user-info">
       <div class="popup__container popup__container_type_edit-user-info">
         <button type="button" class="popup__close-btn"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup-form" name="userInfo">
-          <input type="text" required  placeholder="Имя" name="username" id="username" class="popup-form__input">
-          <input type="text" placeholder="О себе" name="job" id="job" class="popup-form__input">
+        <form class="popup-form" name="userInfo" novalidate>
+          <input type="text" required minlength="2" maxlength="40" placeholder="Имя" name="username" id="username-input" class="popup-form__input">
+          <span class="username-input-error popup-form__input-error"></span>
+          <input type="text" required placeholder="О себе" minlength="2" maxlength="200" name="job" id="job-input" class="popup-form__input">
+          <span class="job-input-error popup-form__input-error"></span>
           <button type="submit" class="popup-form__submit-btn">Сохранить</button>
         </form>
       </div>
     </div>
 
-    <div class="popup popup_type_add-new-card">
+    <div class="popup popup_type_add-new-card" id="add-new-card">
       <div class="popup__container popup__container_type_add-new-card">
         <button type="button" class="popup__close-btn"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form class="popup-form" name="addPicture">
-          <input type="text" required placeholder="Название" name="pictureTitle" id="pictureTitle" class="popup-form__input">
-          <input type="text" required placeholder="Ссылка на картинку" name="pictureLink" id="pictureLink" class="popup-form__input">
+        <form class="popup-form" name="addPicture" novalidate>
+          <input type="text" required placeholder="Название" minlength="2" maxlength="30" name="pictureTitle" id="pictureTitle-input" class="popup-form__input">
+          <span class="pictureTitle-input-error popup-form__input-error"></span>
+          <input type="url" required placeholder="Ссылка на картинку" name="pictureLink" id="pictureLink-input" class="popup-form__input">
+          <span class="pictureLink-input-error popup-form__input-error"></span>
           <button type="submit" class="popup-form__submit-btn">Создать</button>
         </form>
       </div>
     </div>
 
-    <div class="popup popup_type_image">
+    <div class="popup popup_type_image" id="image">
       <div class="popup__container popup__container_type_image">
         <button type="button" class="popup__close-btn"></button>
         <img src="#" class="popup__picture" alt="">
