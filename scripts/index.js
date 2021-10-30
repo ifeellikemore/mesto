@@ -46,6 +46,11 @@ const addCard = (card) => {
 
 initialCards.forEach(addCard);
 
+function openPopup(popup) {
+  popup.classList.add("popup_opened");
+  document.addEventListener("keydown", closePopupOnEsc);
+}
+
 function openFullSizePicture (evt) {
   fullsizePicture.src = evt.target.src;
   fullsizePicture.alt = evt.target.alt;
@@ -53,9 +58,21 @@ function openFullSizePicture (evt) {
   openPopup(imagePopup);
 }
 
-function openPopup(popup) {
-  popup.classList.add("popup_opened");
-  document.addEventListener("keydown", closePopupOnEsc);
+function clearInput(popup, config) {
+  const formElement = popup.querySelector(".popup-form");
+  const inputList = Array.from(formElement.querySelectorAll(".popup-form__input"));
+  inputList.forEach((inputElement) => {
+    hideInputError(formElement, inputElement, config);
+  });
+}
+
+function validateOnOpen(popup, config) {
+  const formElement = popup.querySelector(".popup-form");
+  const inputList = Array.from(formElement.querySelectorAll(".popup-form__input"));
+  inputList.forEach((inputElement) => {
+    checkInputValidity(formElement, inputElement, false, config);
+    updateSubmitState(formElement, config);
+  });
 }
 
 function closePopup(popup) {
@@ -67,6 +84,10 @@ function closePopupOnEsc(evt) {
   const activePopup = document.querySelector(".popup_opened");
   if (evt.keyCode === ESC_KEYCODE) {
     closePopup(activePopup);
+    clearInput(activePopup, {
+      inputErrorClass: "popup-form__input_type_error",
+      spanErrorClass: "popup-form__input-error_active"
+    });
   }
 }
 
@@ -77,6 +98,10 @@ function closePopupOnOverlay() {
     overlayPopup.addEventListener("click", (evt) => {
       if (evt.target === evt.currentTarget) {
         closePopup(overlayPopup);
+        clearInput(overlayPopup, {
+          inputErrorClass: "popup-form__input_type_error",
+          spanErrorClass: "popup-form__input-error_active"
+        });
       }
     });
   });
@@ -121,40 +146,42 @@ function getUserInfoValues() {
 }
 
 addPictureBtn.addEventListener("click", () => {
-  const formElement = addPicturePopupWindow.querySelector(".popup-form");
-  updateSubmitState(formElement, {
-    inputSelector: ".popup-form__input",
-    submitButtonSelector: ".popup-form__submit-btn",
-    inactiveButtonClass: "popup-form__submit-btn_inactive",
-  });
   openPopup(addPicturePopupWindow);
+  validateOnOpen(addPicturePopupWindow, {
+    inputSelector: ".popup-form__input",
+    inputErrorClass: "popup-form__input_type_error",
+    spanErrorClass: "popup-form__input-error_active",
+    submitButtonSelector: ".popup-form__submit-btn",
+    inactiveButtonClass: "popup-form__submit-btn_inactive"
+  });
 });
 
 editBtn.addEventListener("click", () => {
   getUserInfoValues();
-  const formElement = editInfoPopupWindow.querySelector(".popup-form");
-  const inputList = Array.from(formElement.querySelectorAll(".popup-form__input"));
-
-  updateSubmitState(formElement, {
-    inputSelector: ".popup-form__input",
-    submitButtonSelector: ".popup-form__submit-btn",
-    inactiveButtonClass: "popup-form__submit-btn_inactive",
-  });
-  inputList.forEach((inputElement) => {
-    hideInputError(formElement, inputElement, {
-      inputErrorClass: "popup-form__input_type_error",
-      spanErrorClass: "popup-form__input-error_active"
-    });
-  });
   openPopup(editInfoPopupWindow);
+  validateOnOpen(editInfoPopupWindow, {
+    inputSelector: ".popup-form__input",
+    inputErrorClass: "popup-form__input_type_error",
+    spanErrorClass: "popup-form__input-error_active",
+    submitButtonSelector: ".popup-form__submit-btn",
+    inactiveButtonClass: "popup-form__submit-btn_inactive"
+  })
 });
 
 editInfoPopupWindowCloseBtn.addEventListener("click", () => {
   closePopup(editInfoPopupWindow);
+  clearInput(editInfoPopupWindow, {
+    inputErrorClass: "popup-form__input_type_error",
+    spanErrorClass: "popup-form__input-error_active"
+  });
 });
 
 addPicturePopupWindowCloseBtn.addEventListener("click", () => {
   closePopup(addPicturePopupWindow);
+  clearInput(addPicturePopupWindow, {
+    inputErrorClass: "popup-form__input_type_error",
+    spanErrorClass: "popup-form__input-error_active"
+  });
 });
 
 picturePreviewPopupCloseBtn.addEventListener("click", () => {
