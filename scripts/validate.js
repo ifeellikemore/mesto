@@ -13,8 +13,8 @@ function hideInputError(formElement, inputElement, {inputErrorClass, spanErrorCl
   errorElement.textContent = "";
 }
 
-function checkInputValidity(formElement, inputElement, validateEmpty, rest) {
-  if (!inputElement.validity.valid && (!inputElement.validity.valueMissing || validateEmpty)) {
+function checkInputValidity(formElement, inputElement, rest) {
+  if (!inputElement.validity.valid) {
     showInputError(formElement, inputElement, inputElement.validationMessage, rest);
   } else {
     hideInputError(formElement, inputElement, rest);
@@ -45,7 +45,7 @@ function setFormsEventListeners(formElement, selectors) {
   );
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
-      checkInputValidity(formElement, inputElement, true, selectors);
+      checkInputValidity(formElement, inputElement, selectors);
       updateSubmitState(formElement, selectors);
     });
   });
@@ -69,5 +69,5 @@ enableValidation({
   inputErrorClass: "popup-form__input_type_error",
   spanErrorClass: "popup-form__input-error_active",
   submitButtonSelector: ".popup-form__submit-btn",
-  inactiveButtonClass: "popup-form__submit-btn_inactive",
+  inactiveButtonClass: "popup-form__submit-btn_inactive"
 });
