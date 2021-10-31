@@ -66,12 +66,14 @@ function openFullSizePicture (evt) {
   openPopup(imagePopup);
 }
 
-function clearFormErrors(popup, config) {
+function clearPopupFormErrors(popup, config) {
   const formElement = popup.querySelector(".popup-form");
-  const inputList = Array.from(formElement.querySelectorAll(".popup-form__input"));
-  inputList.forEach((inputElement) => {
-    hideInputError(formElement, inputElement, config);
-  });
+  if (formElement) {
+    const inputList = Array.from(formElement.querySelectorAll(".popup-form__input"));
+    inputList.forEach((inputElement) => {
+      hideInputError(formElement, inputElement, config);
+    });
+  }
 }
 
 function validateOnOpen(popup, config) {
@@ -88,7 +90,7 @@ function closePopupOnEsc(evt) {
   const activePopup = document.querySelector(".popup_opened");
   if (evt.keyCode === ESC_KEYCODE) {
     closePopup(activePopup);
-    clearFormErrors(activePopup, config);
+    clearPopupFormErrors(activePopup, config);
   }
 }
 
@@ -99,7 +101,7 @@ function closePopupOnOverlay() {
     overlayPopup.addEventListener("click", (evt) => {
       if (evt.target === evt.currentTarget) {
         closePopup(overlayPopup);
-        clearFormErrors(overlayPopup, config);
+        clearPopupFormErrors(overlayPopup, config);
       }
     });
   });
@@ -157,12 +159,12 @@ editBtn.addEventListener("click", () => {
 
 editInfoPopupWindowCloseBtn.addEventListener("click", () => {
   closePopup(editInfoPopupWindow);
-  clearFormErrors(editInfoPopupWindow, config);
+  clearPopupFormErrors(editInfoPopupWindow, config);
 });
 
 addPicturePopupWindowCloseBtn.addEventListener("click", () => {
   closePopup(addPicturePopupWindow);
-  clearFormErrors(addPicturePopupWindow, config);
+  clearPopupFormErrors(addPicturePopupWindow, config);
 });
 
 picturePreviewPopupCloseBtn.addEventListener("click", () => {
