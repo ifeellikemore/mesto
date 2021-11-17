@@ -1,4 +1,4 @@
-import { Card } from './card.js';
+import { Card } from './Card.js';
 import { openPopup, closePopup, imagePopup, formValidatorAddPicture, formValidatorUserInfo, config } from './utils.js';
 
 const editInfoPopupWindow = document.querySelector(".popup_type_edit-user-info");
