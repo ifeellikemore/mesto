@@ -36,7 +36,7 @@
       <div class="popup__container popup__container_type_edit-user-info">
         <button type="button" class="popup__close-btn"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup-form" name="userInfo" novalidate>
+        <form class="popup-form" name="userInfo" id="#userInfo" novalidate>
           <input type="text" required minlength="2" maxlength="40" placeholder="Имя" name="username" id="username-input" class="popup-form__input">
           <span class="username-input-error popup-form__input-error"></span>
           <input type="text" required placeholder="О себе" minlength="2" maxlength="200" name="job" id="job-input" class="popup-form__input">
@@ -50,7 +50,7 @@
       <div class="popup__container popup__container_type_add-new-card">
         <button type="button" class="popup__close-btn"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form class="popup-form" name="addPicture" novalidate>
+        <form class="popup-form" name="addPicture" id="#addPicture" novalidate>
           <input type="text" required placeholder="Название" minlength="2" maxlength="30" name="pictureTitle" id="pictureTitle-input" class="popup-form__input">
           <span class="pictureTitle-input-error popup-form__input-error"></span>
           <input type="url" required placeholder="Ссылка на картинку" name="pictureLink" id="pictureLink-input" class="popup-form__input">
@@ -68,7 +68,7 @@
       </div>
     </div>
 
-<template id="elements-template">
+<template class="elements-template">
   <article class="element">
     <button type="button" class="element__delete-btn" aria-label="Удалить фото"></button>
     <img src="#" class="element__pic" alt="">
@@ -79,8 +79,6 @@
   </article>
 </template>
 
-<script src="scripts/initial-cards.js"></script>
-<script src="scripts/index.js"></script>
-<script src="scripts/validate.js"></script>
+<script type="module" src="scripts/index.js"></script>
 </body>
 </html>
