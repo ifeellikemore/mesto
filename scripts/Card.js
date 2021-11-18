@@ -1,11 +1,10 @@
-import { openPopup, imagePopup } from './utils.js';
-
 class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._alt = data.alt;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _createCard() {
@@ -20,41 +19,39 @@ class Card {
 
   generateCard() {
     this._element = this._createCard();
+
+    this._cardImage = this._element.querySelector('.element__pic');
+    this._cardTitle = this._element.querySelector('.element__title');
+    this._likeButton = this._element.querySelector('.element__like-btn');
+    this._deleteButton = this._element.querySelector('.element__delete-btn');
+
     this._setEventListeners();
 
-    this._element.querySelector('.element__pic').src = this._link;
-    this._element.querySelector('.element__title').textContent = this._name;
-    this._element.querySelector('.element__pic').alt = this._alt;
+    this._cardImage.src = this._link;
+    this._cardTitle.textContent = this._name;
+    this._cardImage.alt = this._alt;
 
     return this._element;
   }
 
   _setEventListeners() {
-    this._element.querySelector('.element__like-btn').addEventListener('click', () => {
+    this._likeButton.addEventListener('click', () => {
       this._clickLikeButton();
     });
-    this._element.querySelector('.element__delete-btn').addEventListener('click', () => {
+    this._deleteButton.addEventListener('click', () => {
       this._removePicture();
     })
-    this._element.querySelector('.element__pic').addEventListener('click', () => {
-      this._openFullSizePicture();
+    this._cardImage.addEventListener('click', () => {
+      this._handleCardClick(this._link, this._alt, this._name);
     })
   }
 
   _clickLikeButton() {
-    this._element.querySelector('.element__like-btn').classList.toggle('element__like-btn_active');
+    this._likeButton.classList.toggle('element__like-btn_active');
   }
 
   _removePicture() {
-    this._element.querySelector('.element__delete-btn').closest('.element').remove();
-  }
-
-  _openFullSizePicture() {
-    document.querySelector('.popup__picture').src = this._element.querySelector('.element__pic').src;
-    document.querySelector('.popup__picture').alt = this._element.querySelector('.element__pic').alt;
-    document.querySelector('.popup__caption').textContent = this._element.querySelector('.element__title').textContent;
-
-    openPopup(imagePopup);
+    this._deleteButton.closest('.element').remove();
   }
 }
 
