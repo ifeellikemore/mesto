@@ -7,7 +7,7 @@ import { config } from '../scripts/utils.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import UserInfo from '../scripts/components/UserInfo';
-import { initialCards, addPictureBtn, editBtn, username, inputName, job, inputJob, pictureTitle, pictureLink } from '../scripts/constants.js';
+import { initialCards, addPictureBtn, editBtn, username, inputName, job, inputJob, pictureTitle, pictureLink, cardsContainerSelector } from '../scripts/constants.js';
 
 const formValidatorUserInfo = new FormValidator(config, '#userInfo');
 formValidatorUserInfo.enableValidation();
@@ -48,7 +48,7 @@ const popupAddPicture = new PopupWithForm('.popup_type_add-new-card', {
 
         newCard.addItem(cardElement);
       }
-    }, '.elements');
+    }, cardsContainerSelector);
     newCard.renderItems();
   popupAddPicture.close();
   }
@@ -66,7 +66,7 @@ const cardList = new Section({
 
     cardList.addItem(cardElement);
   }
-}, '.elements');
+}, cardsContainerSelector);
 
 cardList.renderItems();
 

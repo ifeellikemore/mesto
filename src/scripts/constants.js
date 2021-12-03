@@ -12,6 +12,7 @@ export const pictureTitle = addPictureForm.querySelector("#pictureTitle-input");
 export const pictureLink = addPictureForm.querySelector("#pictureLink-input");
 export const username = profile.querySelector(".profile-info__name");
 export const job = profile.querySelector(".profile-info__job");
+export const cardsContainerSelector = '.elements';
 export const initialCards = [
   {
     name: 'Йосемите',
