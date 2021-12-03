@@ -6,12 +6,19 @@ import { FormValidator } from '../scripts/components/FormValidator.js';
 import { config } from '../scripts/utils.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
+import UserInfo from '../scripts/components/UserInfo';
 import { initialCards, addPictureBtn, editBtn, username, inputName, job, inputJob, pictureTitle, pictureLink } from '../scripts/constants.js';
 
 const formValidatorUserInfo = new FormValidator(config, '#userInfo');
 formValidatorUserInfo.enableValidation();
 const formValidatorAddPicture = new FormValidator(config, '#addPicture');
 formValidatorAddPicture.enableValidation();
+
+const userInfo = new UserInfo({
+  userName: username.textContent,
+  userInfo: job.textContent
+});
+userInfo.getUserInfo();
 
 const popupUserInfo = new PopupWithForm('.popup_type_edit-user-info', {
   formSubmitHandler: (evt) => {
