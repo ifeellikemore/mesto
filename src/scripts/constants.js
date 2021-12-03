@@ -1,25 +1,18 @@
 const editInfoPopupWindow = document.querySelector(".popup_type_edit-user-info");
 const addPicturePopupWindow = document.querySelector(".popup_type_add-new-card");
-const editInfoPopupWindowCloseBtn = editInfoPopupWindow.querySelector(".popup__close-btn");
-const addPicturePopupWindowCloseBtn = addPicturePopupWindow.querySelector(".popup__close-btn");
 const imagePopup = document.querySelector(".popup_type_image");
-const picturePreviewPopupCloseBtn = imagePopup.querySelector(".popup__close-btn");
 const profile = document.querySelector('.profile');
-const editBtn = profile.querySelector(".profile-info__edit-button");
-const addPictureBtn = profile.querySelector(".profile__add-button");
+export const editBtn = profile.querySelector(".profile-info__edit-button");
+export const addPictureBtn = profile.querySelector(".profile__add-button");
 const editInfoForm = editInfoPopupWindow.querySelector(".popup-form");
 const addPictureForm = addPicturePopupWindow.querySelector(".popup-form");
-const inputName = editInfoForm.querySelector("#username-input");
-const inputJob = editInfoForm.querySelector("#job-input");
-const pictureTitle = addPictureForm.querySelector("#pictureTitle-input");
-const pictureLink = addPictureForm.querySelector("#pictureLink-input");
-const username = profile.querySelector(".profile-info__name");
-const job = profile.querySelector(".profile-info__job");
-const fullsizePicture = imagePopup.querySelector(".popup__picture");
-const fullsizePictureCaption = imagePopup.querySelector(".popup__caption");
-const elementsSection = document.querySelector('.elements');
-
-const initialCards = [
+export const inputName = editInfoForm.querySelector("#username-input");
+export const inputJob = editInfoForm.querySelector("#job-input");
+export const pictureTitle = addPictureForm.querySelector("#pictureTitle-input");
+export const pictureLink = addPictureForm.querySelector("#pictureLink-input");
+export const username = profile.querySelector(".profile-info__name");
+export const job = profile.querySelector(".profile-info__job");
+export const initialCards = [
   {
     name: 'Йосемите',
     link: 'https://images.unsplash.com/photo-1600562732757-7e5a9490b37d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80',

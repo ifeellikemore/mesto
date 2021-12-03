@@ -7,16 +7,16 @@
   <meta name="keywords" content="HTML5, CSS">
   <meta name="author" content="Olya Anoshina">
   <title>Место</title>
-  <link rel="stylesheet" href="pages/index.css">
+  <!-- <link rel="stylesheet" href="../pages/index.css"> -->
 </head>
 <body class="page">
     <header class="header">
-      <img src="images/header-logo.svg" class="header__logo" alt="Место">
+      <img src="<%=require('./images/header-logo.svg')%>" class="header__logo" alt="Место">
     </header>
 
     <main class="content">
       <section class="profile content__profile" aria-label="Информация о профиле">
-        <img src="images/profile-avatar.jpg" class="profile__avatar" alt="Фото профиля">
+        <img src="<%=require('./images/profile-avatar.jpg')%>" class="profile__avatar" alt="Фото профиля">
         <div class="profile-info profile__profile-info">
           <h1 class="profile-info__name">Жак-Ив Кусто</h1>
           <button type="button" class="profile-info__edit-button" aria-label="Кнопка редактирования профиля"></button>
@@ -79,7 +79,7 @@
   </article>
 </template>
 
-<script src="scripts/constants.js"></script>
-<script type="module" src="scripts/index.js"></script>
+<!-- <script src="scripts/constants.js"></script>
+<script type="module" src="scripts/index.js"></script> -->
 </body>
 </html>
