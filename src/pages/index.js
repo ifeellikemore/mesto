@@ -1,13 +1,13 @@
 import './index.css';
-import '../scripts/constants.js';
-import Card from '../scripts/components/Card.js';
-import Section from '../scripts/components/Section.js';
-import { FormValidator } from '../scripts/components/FormValidator.js';
-import { config } from '../scripts/utils.js';
-import PopupWithForm from '../scripts/components/PopupWithForm.js';
-import PopupWithImage from '../scripts/components/PopupWithImage.js';
-import UserInfo from '../scripts/components/UserInfo';
-import { initialCards, addPictureBtn, editBtn, username, inputName, job, inputJob, pictureTitle, pictureLink, cardsContainerSelector } from '../scripts/constants.js';
+import '../utils/constants.js';
+import Card from '../components/Card.js';
+import Section from '../components/Section.js';
+import { FormValidator } from '../components/FormValidator.js';
+import { config } from '../utils/utils.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import UserInfo from '../components/UserInfo.js';
+import { initialCards, addPictureBtn, editBtn, pictureTitle, pictureLink, cardsContainerSelector } from '../utils/constants.js';
 
 const formValidatorUserInfo = new FormValidator(config, '#userInfo');
 formValidatorUserInfo.enableValidation();
@@ -15,42 +15,34 @@ const formValidatorAddPicture = new FormValidator(config, '#addPicture');
 formValidatorAddPicture.enableValidation();
 
 const userInfo = new UserInfo({
-  userName: username.textContent,
-  userInfo: job.textContent
+  usernameSelector: ".profile-info__name",
+  jobSelector: ".profile-info__job"
 });
-userInfo.getUserInfo();
 
 const popupUserInfo = new PopupWithForm('.popup_type_edit-user-info', {
-  formSubmitHandler: (evt) => {
+  handleFormSubmit: (evt) => {
     evt.preventDefault();
-    username.textContent = inputName.value;
-    job.textContent = inputJob.value;
+    const inputValues = popupUserInfo._getInputValues();
+    userInfo.setUserInfo(inputValues);
     popupUserInfo.close();
   }
 });
 popupUserInfo.setEventListeners();
 
+function createCard(data) {
+  return new Card(data, '.elements-template', handleCardClick);
+}
+
 const popupAddPicture = new PopupWithForm('.popup_type_add-new-card', {
-  formSubmitHandler: (evt) => {
+  handleFormSubmit: (evt) => {
     evt.preventDefault();
-    console.log('wertfgh');
-      const params = [{
+    const card = createCard({
       name: pictureTitle.value,
       link: pictureLink.value,
       alt: pictureTitle.value,
-    }];
-
-    const newCard = new Section({
-      items: params,
-      renderer: (item) => {
-        const card = new Card(item, '.elements-template', handleCardClick);
-        const cardElement = card.generateCard();
-
-        newCard.addItem(cardElement);
-      }
-    }, cardsContainerSelector);
-    newCard.renderItems();
-  popupAddPicture.close();
+    })
+    cardList.addItem(card.generateCard());
+    popupAddPicture.close();
   }
 });
 popupAddPicture.setEventListeners();
@@ -61,10 +53,7 @@ popupImage.setEventListeners();
 const cardList = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item, '.elements-template', handleCardClick);
-    const cardElement = card.generateCard();
-
-    cardList.addItem(cardElement);
+    cardList.addItem(createCard(item).generateCard());
   }
 }, cardsContainerSelector);
 
@@ -75,13 +64,15 @@ function handleCardClick(link, alt, name) {
 }
 
 addPictureBtn.addEventListener("click", () => {
-  popupAddPicture.open();
-  formValidatorAddPicture.clearPopupFormErrors();
   formValidatorAddPicture.updateSubmitState();
+  formValidatorAddPicture.clearPopupFormErrors();
+  popupAddPicture.open();
+
 });
 
 editBtn.addEventListener("click", () => {
-  popupUserInfo.open();
-  formValidatorUserInfo.clearPopupFormErrors();
   formValidatorUserInfo.updateSubmitState();
+  formValidatorUserInfo.clearPopupFormErrors();
+  popupUserInfo.open(userInfo.getUserInfo());
+
 });

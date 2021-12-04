@@ -1,29 +1,31 @@
+import { ESC_KEYCODE } from "../utils/constants";
+
 export default class Popup {
   constructor(popupSelector) {
     this._popupSelector = document.querySelector(popupSelector);
     this._popupCloseBtn = this._popupSelector.querySelector('.popup__close-btn');
+    this._handleEscClick = this._handleEscClose.bind(this)
   }
 
   open() {
     this._popupSelector.classList.add('popup_opened');
+    const handleEcsClose = this._handleEscClose.bind(this);
+    document.addEventListener("keydown", this._handleEscClick);
 
   }
 
   close() {
     this._popupSelector.classList.remove('popup_opened');
+    document.removeEventListener("keydown", this._handleEscClick);
   }
 
   _handleEscClose(evt) {
-    const ESC_KEYCODE = 27;
     if (evt.keyCode === ESC_KEYCODE) {
       this.close();
     }
   }
 
   setEventListeners() {
-    document.addEventListener("keydown", (evt) => {
-      this._handleEscClose(evt);
-    });
     this._popupCloseBtn.addEventListener("click", () => {
       this.close();
     });

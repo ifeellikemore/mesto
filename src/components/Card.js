@@ -52,5 +52,6 @@ export default class Card {
 
   _removePicture() {
     this._deleteButton.closest('.element').remove();
+    this._element = null;
   }
 }

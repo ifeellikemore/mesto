@@ -1,10 +1,9 @@
 const editInfoPopupWindow = document.querySelector(".popup_type_edit-user-info");
 const addPicturePopupWindow = document.querySelector(".popup_type_add-new-card");
-const imagePopup = document.querySelector(".popup_type_image");
 const profile = document.querySelector('.profile');
 export const editBtn = profile.querySelector(".profile-info__edit-button");
 export const addPictureBtn = profile.querySelector(".profile__add-button");
-const editInfoForm = editInfoPopupWindow.querySelector(".popup-form");
+export const editInfoForm = editInfoPopupWindow.querySelector(".popup-form");
 const addPictureForm = addPicturePopupWindow.querySelector(".popup-form");
 export const inputName = editInfoForm.querySelector("#username-input");
 export const inputJob = editInfoForm.querySelector("#job-input");
@@ -13,6 +12,7 @@ export const pictureLink = addPictureForm.querySelector("#pictureLink-input");
 export const username = profile.querySelector(".profile-info__name");
 export const job = profile.querySelector(".profile-info__job");
 export const cardsContainerSelector = '.elements';
+export const ESC_KEYCODE = 27;
 export const initialCards = [
   {
     name: 'Йосемите',
