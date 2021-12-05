@@ -4,10 +4,7 @@
   font-size: 12px;
   line-height: 15px;
   color: #FF0000;
-  height: 30px;
-  display: none;
-}
-
-.popup-form__input-error:last-of-type {
-  margin-bottom: -30px;
+  min-height: 30px;
+  opacity: 0;
+  margin-bottom: 5px;
 }

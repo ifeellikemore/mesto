@@ -17,15 +17,6 @@ export default class PopupWithForm extends Popup {
     return inputValues;
   }
 
-  open(initialFieldValues) {
-   super.open();
-   if (initialFieldValues) {
-    for (let field in initialFieldValues) {
-      this._popupForm.elements[field].value = initialFieldValues[field];
-    }
-   }
-  }
-
   close() {
     super.close();
     this._popupForm.reset();
@@ -33,6 +24,10 @@ export default class PopupWithForm extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    this._popupForm.addEventListener('submit', this._handleFormSubmit);
+    this._popupForm.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      this._handleFormSubmit(this._getInputValues());
+      this.close();
+    });
   }
 }

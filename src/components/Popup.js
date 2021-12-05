@@ -3,13 +3,11 @@ import { ESC_KEYCODE } from "../utils/constants";
 export default class Popup {
   constructor(popupSelector) {
     this._popupSelector = document.querySelector(popupSelector);
-    this._popupCloseBtn = this._popupSelector.querySelector('.popup__close-btn');
     this._handleEscClick = this._handleEscClose.bind(this)
   }
 
   open() {
     this._popupSelector.classList.add('popup_opened');
-    const handleEcsClose = this._handleEscClose.bind(this);
     document.addEventListener("keydown", this._handleEscClick);
 
   }
@@ -26,7 +24,7 @@ export default class Popup {
   }
 
   setEventListeners() {
-    this._popupCloseBtn.addEventListener("click", () => {
+    this._popupSelector.querySelector('.popup__close-btn').addEventListener("click", () => {
       this.close();
     });
     this._popupSelector.addEventListener("click", (evt) => {

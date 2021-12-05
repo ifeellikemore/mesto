@@ -7,7 +7,7 @@ import { config } from '../utils/utils.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
-import { initialCards, addPictureBtn, editBtn, pictureTitle, pictureLink, cardsContainerSelector } from '../utils/constants.js';
+import { initialCards, addPictureBtn, editBtn, pictureTitle, pictureLink, cardsContainerSelector, inputName, inputJob } from '../utils/constants.js';
 
 const formValidatorUserInfo = new FormValidator(config, '#userInfo');
 formValidatorUserInfo.enableValidation();
@@ -20,11 +20,8 @@ const userInfo = new UserInfo({
 });
 
 const popupUserInfo = new PopupWithForm('.popup_type_edit-user-info', {
-  handleFormSubmit: (evt) => {
-    evt.preventDefault();
-    const inputValues = popupUserInfo._getInputValues();
-    userInfo.setUserInfo(inputValues);
-    popupUserInfo.close();
+  handleFormSubmit: (data) => {
+    userInfo.setUserInfo(data);
   }
 });
 popupUserInfo.setEventListeners();
@@ -34,15 +31,13 @@ function createCard(data) {
 }
 
 const popupAddPicture = new PopupWithForm('.popup_type_add-new-card', {
-  handleFormSubmit: (evt) => {
-    evt.preventDefault();
+  handleFormSubmit: ({pictureTitle, pictureLink}) => {
     const card = createCard({
-      name: pictureTitle.value,
-      link: pictureLink.value,
-      alt: pictureTitle.value,
+      name: pictureTitle,
+      link: pictureLink,
+      alt: pictureTitle
     })
     cardList.addItem(card.generateCard());
-    popupAddPicture.close();
   }
 });
 popupAddPicture.setEventListeners();
@@ -73,6 +68,8 @@ addPictureBtn.addEventListener("click", () => {
 editBtn.addEventListener("click", () => {
   formValidatorUserInfo.updateSubmitState();
   formValidatorUserInfo.clearPopupFormErrors();
-  popupUserInfo.open(userInfo.getUserInfo());
-
+  const userData = userInfo.getUserInfo();
+  inputName.value = userData.username;
+  inputJob.value = userData.job;
+  popupUserInfo.open();
 });
